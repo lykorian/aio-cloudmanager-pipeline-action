@@ -5,11 +5,10 @@ const {REQUIRED} = require('./constants')
 
 function executeAction() {
     return new Promise((resolve) => {
-        const imsOrgId = core.getInput('imsOrgId', REQUIRED)
         const programId = core.getInput('programId', REQUIRED)
         const pipelineId = core.getInput('pipelineId', REQUIRED)
 
-        initSdk(imsOrgId).then(sdk => {
+        initSdk().then(sdk => {
             core.info(`Creating execution for programId=${programId} and pipelineId=${pipelineId}`)
 
             sdk.createExecution(programId, pipelineId)

@@ -9,7 +9,7 @@ inputs:
     required: true
   imsOrgId:
     description: 'The IMS Organization ID'
-    required: true
+    required: false
   clientId:
     description: 'When providing a JWT configuration, the client ID from the Adobe Developer Console'
     required: false
@@ -25,11 +25,9 @@ inputs:
   baseUrl:
     description: 'IMS base URL'
     required: true
-outputs:
-  executionId:
-    description: 'The created execution ID'
-  executionHref:
-    description: 'The created execution URL'
+  imsConfig:
+    description: 'IMS config object'
+    required: false
 runs:
   using: 'node16'
   main: 'dist/index.js'
