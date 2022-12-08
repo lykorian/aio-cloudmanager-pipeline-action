@@ -22,6 +22,9 @@ inputs:
   key:
     description: 'When providing a JWT configuration, the private key for the technical account'
     required: false
+  baseUrl:
+    description: 'IMS base URL'
+    required: true
 outputs:
   executionId:
     description: 'The created execution ID'
