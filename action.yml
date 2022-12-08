@@ -1,13 +1,32 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Create Pipeline Execution'
+description: 'Create Cloud Manager Pipeline Execution'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  programId:
+    description: 'The Program ID'
     required: true
-    default: '1000'
+  pipelineId:
+    description: 'The Pipeline ID'
+    required: true
+  imsOrgId:
+    description: 'The IMS Organization ID'
+    required: true
+  clientId:
+    description: 'When providing a JWT configuration, the client ID from the Adobe Developer Console'
+    required: false
+  clientSecret:
+    description: 'When providing a JWT configuration, the client secret from the Adobe Developer Console'
+    required: false
+  technicalAccountId:
+    description: 'When providing a JWT configuration, the technical account email from the Adobe Developer Console'
+    required: false
+  key:
+    description: 'When providing a JWT configuration, the private key for the technical account'
+    required: false
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  executionId:
+    description: 'The created execution ID'
+  executionHref:
+    description: 'The created execution URL'
 runs:
   using: 'node16'
   main: 'dist/index.js'
