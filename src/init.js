@@ -8,8 +8,6 @@ const CONTEXT = 'aio-cloudmanager-github-actions'
 const SCOPE = 'ent_cloudmgr_sdk'
 
 async function initSdk(imsOrgId) {
-    core.info('creating access token using provided configuration')
-
     const key = core.getInput('key', REQUIRED)
     const apiKey = core.getInput('clientId', REQUIRED)
     const clientSecret = core.getInput('clientSecret', REQUIRED)
@@ -27,12 +25,8 @@ async function initSdk(imsOrgId) {
         ]
     }
 
-    core.info('ims config: ' + imsConfig)
-
     await context.set(CONTEXT, imsConfig, true)
     const accessToken = await getToken(CONTEXT)
-
-    core.info('access token: ' + accessToken)
 
     return await init(imsOrgId, apiKey, accessToken, baseUrl)
 }
