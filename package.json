@@ -2,7 +2,6 @@
   "name": "aio-cloudmanager-pipeline-action",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint src/**.js",
     "package": "ncc build src/index.js -o dist/",
