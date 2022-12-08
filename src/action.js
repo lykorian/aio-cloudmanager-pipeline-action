@@ -8,19 +8,21 @@ function executeAction() {
         const programId = core.getInput('programId', REQUIRED)
         const pipelineId = core.getInput('pipelineId', REQUIRED)
 
+        core.info(`imsOrgId=${imsOrgId}`)
+
         initSdk(imsOrgId).then(sdk => {
+            core.info(`Creating execution for programId=${programId} and pipelineId=${pipelineId}`)
+
             sdk.createExecution(programId, pipelineId)
                 .then(execution => {
-                    console.log('Pipeline execution: ' + execution)
-
+                    core.info('Pipeline execution:' + execution)
                     core.info(`Started execution ID ${execution.id}`)
                     core.setOutput('executionId', execution.id)
                     core.setOutput('executionHref', execution.link('self') && `${sdk.baseUrl}${execution.link('self').href}`)
                     resolve()
                 })
                 .catch(e => {
-                    console.log('Error: ' + e)
-
+                    core.error('Error creating execution', e)
                     core.setFailed(e)
                     resolve()
                 })
